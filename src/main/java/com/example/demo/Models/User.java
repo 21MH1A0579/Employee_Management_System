@@ -27,10 +27,6 @@ public class User {
 	    @Column(name = "first_name")
 	    private String firstName;
 
-	    public User(String firstName2, String lastName2, String email2, String encode, List<Role> asList) {
-			// TODO Auto-generated constructor stub
-		}
-
 		public Long getId() {
 			return id;
 		}
@@ -94,4 +90,14 @@ public class User {
 	        inverseJoinColumns = @JoinColumn(
 	            name = "role_id", referencedColumnName = "id"))
 	    private Collection<Role> roles;
+	    public User() {
+	    }
+		public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+			super();
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.email = email;
+			this.password = password;
+			this.roles = roles;
+		}
 }

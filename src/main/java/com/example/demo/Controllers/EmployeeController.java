@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Models.Employee;
 import com.example.demo.Services.EmployeeService;
@@ -16,12 +18,13 @@ import com.example.demo.Services.EmployeeService;
 import java.util.List;
 
 @Controller
+@RequestMapping("/employee")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String viewHomePage(Model model) {
         return findPaginated(1, "firstName", "asc", model);        
     }
@@ -36,7 +39,7 @@ public class EmployeeController {
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.saveEmployee(employee);
-        return "redirect:/";
+        return "redirect:/employee/home";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
@@ -49,7 +52,7 @@ public class EmployeeController {
     @GetMapping("/deleteEmployee/{id}")
     public String deleteEmployee(@PathVariable(value = "id") long id) {
         employeeService.deleteEmployeeById(id);
-        return "redirect:/";
+        return "redirect:/employee/home";
     }
 
     @GetMapping("/page/{pageNo}")
@@ -71,6 +74,8 @@ public class EmployeeController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listEmployees", listEmployees);
+        model.addAttribute("employees", listEmployees.size());
+      
         return "index";
     }
 }
