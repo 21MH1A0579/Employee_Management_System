@@ -69,6 +69,8 @@
                 <i class="fa fa-envelope"></i>
                 <input type="email" class="form-control" th:field="*{email}" placeholder="Email" required />
             </div>
+            
+                <input type="hidden" class="form-control" th:field="*{id}" />
             <button type="submit" class="btn btn-primary">
                 <i class="fa fa-save"></i> Update Employee
             </button>
