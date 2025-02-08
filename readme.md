@@ -119,8 +119,5 @@ src/main/resources/
    ```
 
 ## Contributors
-- Your Name
-
-## License
-MIT License
+- CH.BRAHMENDRA(https://github.com/21MH1A0579)
 
